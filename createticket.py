@@ -104,7 +104,7 @@ def snowEdge():
     chromeopt.add_argument('--no-sandbox')
     chromeopt.add_argument("--log-level=3")
     chrome = webdriver.Edge(service=driver, options=chromeopt)
-    # chrome.set_window_position(-2000,0)
+    chrome.set_window_position(-2000,0)
     #chrome = webdriver.Edge(options=chromeopt)
     action = ActionChains(chrome)
     #Navigate to URL
