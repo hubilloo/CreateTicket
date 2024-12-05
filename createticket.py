@@ -350,17 +350,3 @@ submitbutton.pack(pady=10,padx=10)
 
 
 root.mainloop()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
