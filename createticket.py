@@ -28,9 +28,9 @@ def auth():
         keyVaultName = "BadgeIT"
         KVUri = f"https://{keyVaultName}.vault.azure.net"
 
-        clientId = "be6b9aff-51c0-49b9-a97a-dd6ad807727a"
+        clientId = "e8047582-72ec-4c3b-8b8c-041439c6d49c"
         tenantId = "36da45f1-dd2c-4d1f-af13-5abe46b99921"
-        clientSecret = "SJr8Q~XfWkGNBsvl7GdKssTD9kbzQrr4MBiGAalA"
+        clientSecret = "eSA8Q~Ry8ey0W8kYYwLfkA54IKH-WqiIxd9EScu2"
 
         credential = ClientSecretCredential(tenantId, clientId, clientSecret)
         client = SecretClient(vault_url=KVUri, credential=credential)
@@ -42,9 +42,9 @@ def auth():
     session = requests.Session()
     
     user = getSecret("ServiceNowUserName")
-    print(user)
+
     passW = getSecret("ServiceNowPassword") 
-    print(passW)
+ 
     session.auth = (user, passW)
     session.headers.update = {"Content-Type": "application/json",
                "Accept": "application/json"}
@@ -149,7 +149,7 @@ def snowEdge():
         officeInput.send_keys(officeLoc) #Pass Office location
         time.sleep(1)
         officeInput.send_keys(Keys.ENTER)
-        print("Line 150")
+        
         #Request Area
         Input = "s2id_sp_formfield_Please_select_request_area"
         rArea = chrome.find_element(By.ID, Input)
@@ -160,34 +160,28 @@ def snowEdge():
         rAreaInput.send_keys("Wipe") #Pass Request Area
         time.sleep(1)
         rAreaInput.send_keys(Keys.ENTER)
-        print("Line 161")
+        
         #Device Carrier
         Input = "s2id_sp_formfield_Deloitte_device_carrier"
         dCarrier = chrome.find_element(By.ID, Input)
         action.move_to_element(dCarrier).perform()
         dCarrier.click()
-        print("Line 167")
+        
         Input = "s2id_autogen3_search"
         dCarrierInput = chrome.find_element(By.ID, Input)
         dCarrierInput.send_keys(mobileCarrier.get()) #Pass Device Carrier
         time.sleep(1)
         dCarrierInput.send_keys(Keys.ENTER)
-        print("Line 173")
+        
         #Compliance Check - Req Field
         Input = "s2id_sp_formfield_If_compliance_is_selected_what_is_the_compliance_issue"
-        print("1")
         compCheck = chrome.find_element(By.ID, Input)
-        print("2")
-        print("3")
         action.move_to_element(compCheck).perform()
-        print("4")
         compCheck.click()
-        print("5")
         Input = "s2id_autogen4_search"
         compCheckInput = chrome.find_element(By.ID, Input)
         compCheckInput.send_keys("Personal Device") #Pass Comp Check
         time.sleep(1)
-        print("Line 184")
         compCheckInput.send_keys(Keys.ENTER)
         ### End of Required Input ###
       
@@ -197,14 +191,12 @@ def snowEdge():
         action.move_to_element(deviceMTN).perform()
         deviceMTN.click()
         deviceMTN.send_keys(Keys.SPACE) #Pass MTN
-        print("Line 194")
         #Device IMEI
         Input = "sp_formfield_IMEI_or_ESN_Hex_Number"
         deviceIMEI = chrome.find_element(By.ID, Input)
         action.move_to_element(deviceIMEI).perform()
         deviceIMEI.click()
         deviceIMEI.send_keys(IMEI.get()) #Pass IMEI
-        print("Line 204")
         # #Emp Personal Email 
         # Input = "sp_formfield_Employees_Personal_Email_Address"
         # empEmail = chrome.find_element(By.ID, Input)
@@ -217,13 +209,11 @@ def snowEdge():
         compCheck = chrome.find_element(By.ID, Input)
         action.move_to_element(compCheck).perform()
         compCheck.click()
-        print("Line 214")
         Input = "s2id_autogen10_search"
         compCheckInput = chrome.find_element(By.ID, Input)
         compCheckInput.send_keys("Wiped/Reset to factory defaults") #Pass Wipe Status
         time.sleep(1)
         compCheckInput.send_keys(Keys.ENTER)
-        print("Line 220")
         #Device MTN Status
         Input = "s2id_sp_formfield_MTN_Status"
         compCheck = chrome.find_element(By.ID, Input)
@@ -234,25 +224,17 @@ def snowEdge():
         compCheckInput.send_keys(mtnStatus.get()) #Pass MTN Stat
         time.sleep(1)
         compCheckInput.send_keys(Keys.ENTER)
-        print("10")
         #Device reason for not wiping
         Input = "s2id_sp_formfield_Reason_for_Not_Wiping_Data"
-        print("11")
         compCheck = chrome.find_element(By.ID, Input)
-        print("11.1")
         action.move_to_element(compCheck).perform()
-        print("11.2")
         compCheck.click()
-        print("12")
         Input = "s2id_autogen6_search"
-        print("13")
         compCheckInput = chrome.find_element(By.ID, Input)
-        print("14")
         # select2-result-label-38
         # compCheckInput.select_by_visible_text('SDHD 10 day hold')
 
         compCheckInput.send_keys("SDHD 10 day hold") #Pass Reason
-        print("15")
         time.sleep(1)
         compCheckInput.send_keys(Keys.ENTER)
 
@@ -275,26 +257,19 @@ def snowEdge():
         print("Process Time: ", eTime - sTime)
 
         #Submit
-        print("111")
         Input = "/html/body/div[1]/section/main/div[2]/div/sp-page-row/div/div[2]/span[2]/div/div/div/div/div[1]/div[4]/div/div/button"
         dCarrier = chrome.find_element(By.XPATH, Input)
         action.move_to_element(dCarrier).perform()
         dCarrier.click()
-        print("222")
         try:
             alert_element = WebDriverWait(chrome, 10).until(EC.presence_of_element_located((By.XPATH, "/html/body/div[1]/div[2]/div/span")))
-            print('223')
             
-            print('224')
             alert_text = alert_element.text
             
-            print("1.3")
             full_text = alert_text[8:18]
             
         except Exception as e:
-            print("An error occurred:", e)
-            print("1.5")
-        print("873")
+            print("Error")
         req_code = re.search(r'REQ\d+', full_text).group()
         #print(req_code) 
         submitData(req_code)
