@@ -317,7 +317,7 @@ fromProcess = ttk.Combobox(frame,values=offices,width = 300)
 fromProcess.pack(pady=10, padx=10)
 # 'ARLINGTON-1919 NORTH LYNN
 # fromProcess.set("Hermitage_4022 Sells Drive") 
-fromProcess.set("ARLINGTON-1919 NORTH LYNN") 
+fromProcess.set("Hermitage_4022 Sells Drive") 
 mobileCarrier = ttk.Combobox(frame,values=[" ","T-MOBILE","VERIZON","AT&T"],width = 300)
 mobileCarrier.pack(pady=10,padx=10)
 mobileCarrier.set("Select Carrier")
