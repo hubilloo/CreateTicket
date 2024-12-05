@@ -22,9 +22,9 @@ def auth():
         keyVaultName = "BadgeIT"
         KVUri = f"https://{keyVaultName}.vault.azure.net"
 
-        clientId = "be6b9aff-51c0-49b9-a97a-dd6ad807727a"
+        clientId = "e8047582-72ec-4c3b-8b8c-041439c6d49c"
         tenantId = "36da45f1-dd2c-4d1f-af13-5abe46b99921"
-        clientSecret = "SJr8Q~XfWkGNBsvl7GdKssTD9kbzQrr4MBiGAalA"
+        clientSecret = "eSA8Q~Ry8ey0W8kYYwLfkA54IKH-WqiIxd9EScu2"
 
         credential = ClientSecretCredential(tenantId, clientId, clientSecret)
         client = SecretClient(vault_url=KVUri, credential=credential)
